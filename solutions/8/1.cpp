@@ -17,7 +17,7 @@ signed main() {
             for (int vi = 0; vi < n; ++vi) {
                 for (int vj = 0; vj < m; ++vj) {
                     if (ui == vi && uj == vj) continue;
-                    if (!(a[ui][uj] == a[vi][vj] && a[ui][uj] != '.'))continue;
+                    if (!(a[ui][uj] == a[vi][vj] && a[ui][uj] != '.')) continue;
 
                     int wi = ui - (vi - ui), wj = uj - (vj - uj);
                     if (wi >= 0 && wi < n && wj >= 0 && wj < m) b[wi][wj] = '#';

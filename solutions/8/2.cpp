@@ -17,7 +17,7 @@ signed main() {
             for (int vi = 0; vi < n; ++vi) {
                 for (int vj = 0; vj < m; ++vj) {
                     if (ui == vi && uj == vj) continue;
-                    if (!(a[ui][uj] == a[vi][vj] && a[ui][uj] != '.'))continue;
+                    if (!(a[ui][uj] == a[vi][vj] && a[ui][uj] != '.')) continue;
                     int di = vi - ui, dj = vj - uj;
                     for (int i = 0; i < n; ++i) {
                         for (int j = 0; j < m; ++j) {
