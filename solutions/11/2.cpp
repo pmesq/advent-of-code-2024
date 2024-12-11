@@ -26,11 +26,14 @@ signed main() {
     for (int i = 0; i < bli; ++i) {
         for (auto [x, v] : dp[i]) {
             int d = dig(x);
-            if (x == 0) dp[i + 1][1] += v;
-            else if (d % 2 == 0) {
+            if (x == 0) {
+                dp[i + 1][1] += v;
+            } else if (d % 2 == 0) {
                 dp[i + 1][x / po10[d / 2]] += v;
                 dp[i + 1][x % po10[d / 2]] += v;
-            } else dp[i + 1][x * 2024] += v;
+            } else {
+                dp[i + 1][x * 2024] += v;
+            }
         }
     }
 

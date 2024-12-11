@@ -26,12 +26,15 @@ signed main() {
     for (int i = 0; i < bli; ++i) {
         vector<long long> b;
         for (long long x : a) {
-            int d;
-            if (x == 0) b.push_back(1);
-            else if ((d = dig(x)) % 2 == 0) {
+            int d = dig(x);
+            if (x == 0) {
+                b.push_back(1);
+            } else if (d % 2 == 0) {
                 b.push_back(x / po10[d / 2]);
                 b.push_back(x % po10[d / 2]);
-            } else b.push_back(x * 2024);
+            } else {
+                b.push_back(x * 2024);
+            }
         }
         a = b;
     }
