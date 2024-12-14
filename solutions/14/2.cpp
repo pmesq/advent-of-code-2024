@@ -27,24 +27,26 @@ signed main() {
         a.emplace_back(b[0], b[1], b[2], b[3]);
     }
 
+    vector<vector<int>> g(n, vector<int>(m));
     for (int t = 0; t < 10000; ++t) {
-        vector<vector<int>> g(n, vector<int>(m, 0));
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                g[i][j] = 0;
+            }
+        }
         for (auto&[x, y, vx, vy] : a) {
             x = ((x + vx) % m + m) % m;
             y = ((y + vy) % n + n) % n;
-            g[y][x]++;
+            g[y][x] = 1;
         }
         const int K = 10;
         int fnd = 0;
-        for (int i = 0; i + K < n; ++i) {
-            for (int j = 0; j + K < m; ++j) {
-                int psb = 1;
-                for (int k = 0; k < K; ++k) {
-                    if (g[i + k][j + k] == 0) {
-                        psb = 0;
-                    }
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                if (g[i][j] && i - 1 >= 0 && j - 1 >= 0) {
+                    g[i][j] += g[i - 1][j - 1];
                 }
-                if (psb) {
+                if (g[i][j] >= K) {
                     fnd = 1;
                     break;
                 }
@@ -54,11 +56,11 @@ signed main() {
             cout << t + 1 << endl;
             for (int i = 0; i < n; ++i) {
                 for (int j = 0; j < m; ++j) {
-                    cout<<g[i][j];
+                    cout << ".*"[g[i][j] != 0];
                 }
-                cout<<endl;
+                cout << endl;
             }
-            cout<<"---"<<endl;
+            break;
         }
     }
 
